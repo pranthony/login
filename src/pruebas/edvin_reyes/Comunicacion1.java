@@ -29,7 +29,7 @@ import javax.swing.plaf.basic.BasicToggleButtonUI;
  *
  * @author Usuario
  */
-public class ModeloCurso extends javax.swing.JFrame {
+public class Comunicacion1 extends javax.swing.JFrame {
     
     JButton curso1 = new JButton("Matemática");
     JButton curso2 = new JButton("Biología");
@@ -40,7 +40,7 @@ public class ModeloCurso extends javax.swing.JFrame {
 
     
     
-    public ModeloCurso() {
+    public Comunicacion1() {
         initComponents();
         this.setLocationRelativeTo(null);
         new Pintor(cla.getFondo1()).pintar(arribaPanel);
@@ -81,7 +81,8 @@ public class ModeloCurso extends javax.swing.JFrame {
                 }
             });
         }
-        String[][]rellenar={{"Enunciado1","clave1","clave11", "clave12", "clave13"},
+        String[][]rellenar={{"¿Qué es el adjetivo?","no sé","me da amsiedaaad", "soy groot", "categoria gramatical que describe"
+                + " alguna cualidad del sujeto"},
                             {"Enunciado2","clave2","clave21", "clave22", "clave23"},
                             {"Enunciado3","clave3","clave31", "clave32", "clave33"}};
         JPanel [] paneles={alternativasPanel,alternativasPanel1, alternativasPanel2};
@@ -212,7 +213,7 @@ public class ModeloCurso extends javax.swing.JFrame {
 
         enunciadoJLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         enunciadoJLabel.setForeground(new java.awt.Color(0, 0, 0));
-        enunciadoJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        enunciadoJLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         enunciadoJLabel.setText("jLabel4");
         pregunta1panel.add(enunciadoJLabel, java.awt.BorderLayout.PAGE_START);
 
@@ -220,6 +221,8 @@ public class ModeloCurso extends javax.swing.JFrame {
         infoJLabel.setForeground(new java.awt.Color(0, 0, 0));
         infoJLabel.setText("jLabel3");
         pregunta1panel.add(infoJLabel, java.awt.BorderLayout.PAGE_END);
+
+        alternativasPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         buttonGroup1.add(claveA);
         claveA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -253,7 +256,7 @@ public class ModeloCurso extends javax.swing.JFrame {
 
         enunciadoJLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         enunciadoJLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        enunciadoJLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        enunciadoJLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         enunciadoJLabel1.setText("jLabel4");
         pregunta1panel1.add(enunciadoJLabel1, java.awt.BorderLayout.PAGE_START);
 
@@ -261,6 +264,8 @@ public class ModeloCurso extends javax.swing.JFrame {
         infoJLabel1.setForeground(new java.awt.Color(0, 0, 0));
         infoJLabel1.setText("jLabel3");
         pregunta1panel1.add(infoJLabel1, java.awt.BorderLayout.PAGE_END);
+
+        alternativasPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         buttonGroup2.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -294,7 +299,7 @@ public class ModeloCurso extends javax.swing.JFrame {
 
         enunciadoJLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         enunciadoJLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        enunciadoJLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        enunciadoJLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         enunciadoJLabel2.setText("jLabel4");
         pregunta1panel2.add(enunciadoJLabel2, java.awt.BorderLayout.PAGE_START);
 
@@ -302,6 +307,8 @@ public class ModeloCurso extends javax.swing.JFrame {
         infoJLabel2.setForeground(new java.awt.Color(0, 0, 0));
         infoJLabel2.setText("jLabel3");
         pregunta1panel2.add(infoJLabel2, java.awt.BorderLayout.PAGE_END);
+
+        alternativasPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         buttonGroup3.add(jRadioButton9);
         jRadioButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -469,21 +476,23 @@ public class ModeloCurso extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModeloCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Comunicacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModeloCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Comunicacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModeloCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Comunicacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModeloCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Comunicacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModeloCurso().setVisible(true);
+                new Comunicacion1().setVisible(true);
             }
         });
     }
