@@ -6,13 +6,24 @@
 package pruebas.edvin_reyes;
 
 import com.gt.correcion.Corrector;
+import com.gt.modo_oscuro.Letrista;
 import com.gt.modo_oscuro.Pintor;
+import com.gt.modo_oscuro.PintorBT;
+import com.gt.modo_oscuro.Tema1;
+import com.gt.modo_oscuro.Tema2;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.MenuBar;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.plaf.basic.BasicToggleButtonUI;
 
 /**
  *
@@ -20,16 +31,37 @@ import javax.swing.JRadioButton;
  */
 public class ModeloCurso extends javax.swing.JFrame {
     
-   
+    JButton curso1 = new JButton("Matemática");
+    JButton curso2 = new JButton("Biología");
+    JButton curso3 = new JButton("Comunicación");
+    Tema1 oscu= new Tema1();
+    Tema2 cla=new Tema2();
+    
+
+    
     
     public ModeloCurso() {
         initComponents();
+       
+        new Pintor(cla.getFondo1()).pintar(arribaPanel);
+        new Pintor(cla.getFondo1()).pintar(centralPanel);
+        new Pintor(cla.getFondo1()).pintar(abajoPanel);
+        new PintorBT(cla.getBotones1(),cla.getBotones1c()).pintar(abajoPanel);
+        jToggleButton1.setBackground(cla.getFondo1());
+        jToggleButton1.setUI(new BasicToggleButtonUI());
+        jToggleButton2.setBackground(cla.getFondo1());
+        jToggleButton2.setUI(new BasicToggleButtonUI());
+        new Letrista(Color.BLACK).pintar(arribaPanel);
+        new Letrista(Color.BLACK).pintar(centralPanel);
+        JButton [] btns={curso1, curso2, curso3}; 
+        for (JButton btn: btns){
+            btn.setForeground(Color.WHITE);
+            btn.setFont(new java.awt.Font("Arial", 2, 16));
+        }
         
         
-         
-        new Pintor(Color.BLUE).pintar(arribaPanel);
-        new Pintor(Color.DARK_GRAY).pintar(centralPanel);
-        new Pintor(Color.PINK).pintar(abajoPanel);
+                
+            
         
     }
 
@@ -45,11 +77,11 @@ public class ModeloCurso extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
-        rootPanel = new javax.swing.JPanel();
         arribaPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jPanel1 = new javax.swing.JPanel();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         centralPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         preguntasJPanel = new javax.swing.JPanel();
@@ -83,76 +115,99 @@ public class ModeloCurso extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(400, 1800));
+        setPreferredSize(new java.awt.Dimension(500, 850));
 
-        rootPanel.setPreferredSize(new java.awt.Dimension(800, 2560));
-        rootPanel.setLayout(new java.awt.BorderLayout());
-
+        arribaPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
         arribaPanel.setPreferredSize(new java.awt.Dimension(0, 100));
         arribaPanel.setLayout(new java.awt.BorderLayout());
 
+        jToggleButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menuosc.png"))); // NOI18N
+        jToggleButton1.setToolTipText("");
+        jToggleButton1.setPreferredSize(new java.awt.Dimension(50, 25));
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseEntered(evt);
+            }
+        });
+        arribaPanel.add(jToggleButton1, java.awt.BorderLayout.LINE_START);
+
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png"))); // NOI18N
+        jToggleButton2.setActionCommand("");
+        jToggleButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jToggleButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton2MouseClicked(evt);
+            }
+        });
+        arribaPanel.add(jToggleButton2, java.awt.BorderLayout.LINE_END);
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(120, 25));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Ciencias Sociales");
         jLabel1.setToolTipText("");
-        arribaPanel.add(jLabel1, java.awt.BorderLayout.CENTER);
+        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
 
-        jToggleButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jToggleButton1.setText("Menú");
-        jToggleButton1.setPreferredSize(new java.awt.Dimension(120, 25));
-        arribaPanel.add(jToggleButton1, java.awt.BorderLayout.LINE_START);
+        arribaPanel.add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(120, 25));
+        getContentPane().add(arribaPanel, java.awt.BorderLayout.PAGE_START);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        arribaPanel.add(jPanel1, java.awt.BorderLayout.LINE_END);
-
-        rootPanel.add(arribaPanel, java.awt.BorderLayout.PAGE_START);
-
+        centralPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         centralPanel.setPreferredSize(new java.awt.Dimension(0, 100));
-        centralPanel.setLayout(new java.awt.BorderLayout());
+        centralPanel.setLayout(new java.awt.BorderLayout(0, 20));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Bienvenido ");
+        jLabel2.setText("RESPONDA LAS SIGUIENTES PREGUNTAS");
         jLabel2.setToolTipText("");
         jLabel2.setPreferredSize(new java.awt.Dimension(34, 50));
         centralPanel.add(jLabel2, java.awt.BorderLayout.PAGE_START);
 
         preguntasJPanel.setLayout(new java.awt.GridLayout(3, 0, 0, 20));
 
-        pregunta1panel.setLayout(new java.awt.BorderLayout());
+        pregunta1panel.setLayout(new java.awt.BorderLayout(0, 15));
 
+        enunciadoJLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        enunciadoJLabel.setForeground(new java.awt.Color(0, 0, 0));
         enunciadoJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         enunciadoJLabel.setText("jLabel4");
         pregunta1panel.add(enunciadoJLabel, java.awt.BorderLayout.PAGE_START);
 
+        infoJLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        infoJLabel.setForeground(new java.awt.Color(0, 0, 0));
         infoJLabel.setText("jLabel3");
         pregunta1panel.add(infoJLabel, java.awt.BorderLayout.PAGE_END);
 
         buttonGroup1.add(claveA);
+        claveA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        claveA.setForeground(new java.awt.Color(0, 0, 0));
         claveA.setText("jRadioButton1");
         alternativasPanel.add(claveA);
 
         buttonGroup1.add(claveA1);
+        claveA1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        claveA1.setForeground(new java.awt.Color(0, 0, 0));
         claveA1.setText("jRadioButton2");
         alternativasPanel.add(claveA1);
 
         buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton3.setText("jRadioButton3");
         alternativasPanel.add(jRadioButton3);
 
         buttonGroup1.add(jRadioButton4);
+        jRadioButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton4.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton4.setText("jRadioButton4");
         alternativasPanel.add(jRadioButton4);
 
@@ -162,26 +217,38 @@ public class ModeloCurso extends javax.swing.JFrame {
 
         pregunta1panel1.setLayout(new java.awt.BorderLayout());
 
+        enunciadoJLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        enunciadoJLabel1.setForeground(new java.awt.Color(0, 0, 0));
         enunciadoJLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         enunciadoJLabel1.setText("jLabel4");
         pregunta1panel1.add(enunciadoJLabel1, java.awt.BorderLayout.PAGE_START);
 
+        infoJLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        infoJLabel1.setForeground(new java.awt.Color(0, 0, 0));
         infoJLabel1.setText("jLabel3");
         pregunta1panel1.add(infoJLabel1, java.awt.BorderLayout.PAGE_END);
 
         buttonGroup2.add(jRadioButton5);
+        jRadioButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton5.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton5.setText("jRadioButton1");
         alternativasPanel1.add(jRadioButton5);
 
         buttonGroup2.add(jRadioButton6);
+        jRadioButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton6.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton6.setText("jRadioButton2");
         alternativasPanel1.add(jRadioButton6);
 
         buttonGroup2.add(jRadioButton7);
+        jRadioButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton7.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton7.setText("jRadioButton3");
         alternativasPanel1.add(jRadioButton7);
 
         buttonGroup2.add(jRadioButton8);
+        jRadioButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton8.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton8.setText("jRadioButton4");
         alternativasPanel1.add(jRadioButton8);
 
@@ -191,26 +258,38 @@ public class ModeloCurso extends javax.swing.JFrame {
 
         pregunta1panel2.setLayout(new java.awt.BorderLayout());
 
+        enunciadoJLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        enunciadoJLabel2.setForeground(new java.awt.Color(0, 0, 0));
         enunciadoJLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         enunciadoJLabel2.setText("jLabel4");
         pregunta1panel2.add(enunciadoJLabel2, java.awt.BorderLayout.PAGE_START);
 
+        infoJLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        infoJLabel2.setForeground(new java.awt.Color(0, 0, 0));
         infoJLabel2.setText("jLabel3");
         pregunta1panel2.add(infoJLabel2, java.awt.BorderLayout.PAGE_END);
 
         buttonGroup3.add(jRadioButton9);
+        jRadioButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton9.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton9.setText("jRadioButton1");
         alternativasPanel2.add(jRadioButton9);
 
         buttonGroup3.add(jRadioButton10);
+        jRadioButton10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton10.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton10.setText("jRadioButton2");
         alternativasPanel2.add(jRadioButton10);
 
         buttonGroup3.add(jRadioButton11);
+        jRadioButton11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton11.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton11.setText("jRadioButton3");
         alternativasPanel2.add(jRadioButton11);
 
         buttonGroup3.add(jRadioButton12);
+        jRadioButton12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton12.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton12.setText("jRadioButton4");
         alternativasPanel2.add(jRadioButton12);
 
@@ -220,15 +299,19 @@ public class ModeloCurso extends javax.swing.JFrame {
 
         centralPanel.add(preguntasJPanel, java.awt.BorderLayout.CENTER);
 
-        rootPanel.add(centralPanel, java.awt.BorderLayout.CENTER);
+        getContentPane().add(centralPanel, java.awt.BorderLayout.CENTER);
 
+        abajoPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 10, 10, 10));
         abajoPanel.setPreferredSize(new java.awt.Dimension(0, 100));
         abajoPanel.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setText("Salir");
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/arrowbackcla.png"))); // NOI18N
         abajoPanel.add(jButton1);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Ver errores");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -242,12 +325,12 @@ public class ModeloCurso extends javax.swing.JFrame {
         });
         abajoPanel.add(jButton2);
 
-        jButton3.setText("Siguiente");
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/arrowforwardcla.png"))); // NOI18N
         abajoPanel.add(jButton3);
 
-        rootPanel.add(abajoPanel, java.awt.BorderLayout.PAGE_END);
-
-        getContentPane().add(rootPanel, java.awt.BorderLayout.CENTER);
+        getContentPane().add(abajoPanel, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -268,6 +351,72 @@ public class ModeloCurso extends javax.swing.JFrame {
             new Corrector().corregir(respuestas[i], alertas[i]);
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jToggleButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseEntered
+        // TODO add your handling code here:
+        //Se peude mejorar con un slide y con el método is showing para q se recontruya
+        
+    }//GEN-LAST:event_jToggleButton1MouseEntered
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        // TODO add your handling code here:
+        if (jToggleButton1.isSelected()){
+            jPanel2.remove(jLabel1);
+            JButton [] btns ={curso1, curso2, curso3};
+            for (JButton btn : btns) {
+                jPanel2.add(btn);
+                
+                
+            }
+            new PintorBT(oscu.getBotones1(),oscu.getBotones1c()).pintar(jPanel2);
+            jPanel2.setLayout(new java.awt.GridLayout(1,3,10,10));
+            this.setSize(this.getWidth()+1, this.getHeight());
+            this.setSize(this.getWidth()-1, this.getHeight());
+            jToggleButton2.setEnabled(false);
+            
+        }else{
+            jPanel2.removeAll();
+            jPanel2.setLayout(new java.awt.BorderLayout());
+            jPanel2.add(jLabel1);
+            this.setSize(this.getWidth()+1, this.getHeight());
+            this.setSize(this.getWidth()-1, this.getHeight());
+            jToggleButton2.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
+        // TODO add your handling code here:
+        if (jToggleButton2.isSelected()) {
+            new Pintor(oscu.getFondo2()).pintar(arribaPanel);
+            new Pintor(oscu.getFondo1()).pintar(centralPanel);
+            new Pintor(oscu.getFondo1()).pintar(abajoPanel);
+            new PintorBT(oscu.getBotones1(),cla.getBotones1c()).pintar(abajoPanel);
+            jToggleButton1.setBackground(oscu.getFondo2());
+            jToggleButton1.setUI(new BasicToggleButtonUI());
+            jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menuscla.png")));
+            jToggleButton2.setBackground(oscu.getFondo2());
+            jToggleButton2.setUI(new BasicToggleButtonUI());
+            jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
+            new Letrista(Color.WHITE).pintar(arribaPanel);
+            new Letrista(Color.WHITE).pintar(centralPanel);
+
+            
+        } else {
+            new Pintor(cla.getFondo1()).pintar(arribaPanel);
+            new Pintor(cla.getFondo1()).pintar(centralPanel);
+            new Pintor(cla.getFondo1()).pintar(abajoPanel);
+            new PintorBT(cla.getBotones1(),cla.getBotones1c()).pintar(abajoPanel);
+            jToggleButton1.setBackground(cla.getFondo1());
+            jToggleButton1.setUI(new BasicToggleButtonUI());
+            jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menuosc.png")));
+            jToggleButton2.setBackground(cla.getFondo1());
+            jToggleButton2.setUI(new BasicToggleButtonUI());
+            jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png")));
+            new Letrista(Color.BLACK).pintar(arribaPanel);
+            new Letrista(Color.BLACK).pintar(centralPanel);
+        }
+    }//GEN-LAST:event_jToggleButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -328,7 +477,7 @@ public class ModeloCurso extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
     private javax.swing.JRadioButton jRadioButton12;
@@ -340,10 +489,10 @@ public class ModeloCurso extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JPanel pregunta1panel;
     private javax.swing.JPanel pregunta1panel1;
     private javax.swing.JPanel pregunta1panel2;
     private javax.swing.JPanel preguntasJPanel;
-    private javax.swing.JPanel rootPanel;
     // End of variables declaration//GEN-END:variables
 }
