@@ -30,6 +30,7 @@ public class inicio extends javax.swing.JFrame {
     Tema1 osc =new Tema1();
     public inicio() {
         initComponents();
+       this.setLocationRelativeTo(null);
         (new Pintor(claro.getFondo1())).pintar(rootPanel);
 //        oscuro(rootPanel, new Color (30,30,30));
         (new PintorBT(claro.getBotones1(),claro.getBotones1c())).pintar(botonPanel);
