@@ -29,7 +29,7 @@ import javax.swing.plaf.basic.BasicToggleButtonUI;
  *
  * @author Usuario
  */
-public class Comunicacion1 extends javax.swing.JFrame {
+public class Biologia1 extends javax.swing.JFrame {
     
     JButton curso1 = new JButton("Matemática");
     JButton curso2 = new JButton("Biología");
@@ -41,7 +41,7 @@ public class Comunicacion1 extends javax.swing.JFrame {
 
     
     
-    public Comunicacion1(String user, boolean modo) {
+    public Biologia1(String user, boolean modo) {
         initComponents();
         
         this.user=user;
@@ -82,10 +82,10 @@ public class Comunicacion1 extends javax.swing.JFrame {
             public void mouseExited(MouseEvent e) {
             }
         });
-        String[][]rellenar={{"¿Qué es el adjetivo?","no sé","me da ammsiedaad", "soy groot", "categoria gramatical que describe"
-                + " alguna cualidad del sujeto"},
-                            {"Selecciona la alternativa que es un pronombre","Pedro","brillante", "te", "él"},
-                            {"¿Cuál de las alternativas presenta tildación diacrítica?","Tengo fe","María llamó", "Solo sé este tema", "Otra vez la amsmiedad"}};
+        String[][]rellenar={{"¿Qué es el ecosistema?","Sistema estático de animales",
+                            "interacción de animales y plantas", "Sinónimo de nicho", "sistema dinámico de seres vivos su medio"},
+                            {"Oparín propueso la teoría:","del Big Bang","Deriva continental", "Evolución", "Quimiosintética"},
+                            {"Seleccione un elemento oligogénico","O","K", "Mga", "Fr"}};
         JPanel [] paneles={alternativasPanel,alternativasPanel1, alternativasPanel2};
         JLabel [] enun={enunciadoJLabel,enunciadoJLabel1,enunciadoJLabel2};
         for (int i = 0; i < 3; i++) {
@@ -187,7 +187,7 @@ public class Comunicacion1 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Comunicación");
+        jLabel1.setText("Biología");
         jLabel1.setToolTipText("");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
         jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
@@ -510,14 +510,18 @@ public class Comunicacion1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Comunicacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Biologia1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Comunicacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Biologia1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Comunicacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Biologia1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Comunicacion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Biologia1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -526,7 +530,7 @@ public class Comunicacion1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Comunicacion1(null, true).setVisible(true);
+                new Biologia1(null, false).setVisible(true);
             }
         });
     }

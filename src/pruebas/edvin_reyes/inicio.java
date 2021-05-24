@@ -28,15 +28,14 @@ public class inicio extends javax.swing.JFrame {
      */
     Tema2 claro =new Tema2();
     Tema1 osc =new Tema1();
-    public inicio() {
+    public inicio(boolean modo) {
         initComponents();
        this.setLocationRelativeTo(null);
-        (new Pintor(claro.getFondo1())).pintar(rootPanel);
-//        oscuro(rootPanel, new Color (30,30,30));
-        (new PintorBT(claro.getBotones1(),claro.getBotones1c())).pintar(botonPanel);
-        
-        jToggleButton1.setBackground(claro.getFondo1());
-        jToggleButton1.setUI(new BasicButtonUI());
+       if(modo){
+           modoOsc();
+       }else{
+           modoCla();
+       }
         
     }
 
@@ -92,7 +91,6 @@ public class inicio extends javax.swing.JFrame {
         upPanel.setLayout(new java.awt.BorderLayout());
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png"))); // NOI18N
-        jToggleButton1.setActionCommand("");
         jToggleButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -245,6 +243,11 @@ public class inicio extends javax.swing.JFrame {
         jButton2.setText("Iniciar sesión");
         jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         jButton2.setPreferredSize(new java.awt.Dimension(500, 100));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         botonPanel.add(jButton2);
 
         jPanel9.setPreferredSize(new java.awt.Dimension(77, 100));
@@ -274,26 +277,10 @@ public class inicio extends javax.swing.JFrame {
         if (jToggleButton1.isSelected()) {
         //hemos cambiado la función por un servicio 
 //            oscuro(rootPanel,Color.CYAN);
-              (new Pintor (osc.getFondo1())).pintar(rootPanel);
-              (new PintorBT(osc.getBotones1(),osc.getBotones1c())).pintar(botonPanel);
-              jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
-              jToggleButton1.setBackground(osc.getFondo1());
-              jToggleButton1.setUI(new BasicButtonUI());
-              jLabel1.setForeground(Color.WHITE);
-              jLabel2.setForeground(Color.WHITE);
+              modoOsc();
               
-        
         }else {
-            
-//            oscuro(rootPanel,Color.DARK_GRAY);
-              (new Pintor(claro.getFondo1())).pintar(rootPanel);
-//        oscuro(rootPanel, new Color (30,30,30));
-              (new PintorBT(claro.getBotones1(),claro.getBotones1c())).pintar(botonPanel);
-              jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png")));
-              jToggleButton1.setBackground(Color.WHITE);
-              jToggleButton1.setUI(new BasicButtonUI());
-              jLabel1.setForeground(Color.BLACK);
-              jLabel2.setForeground(Color.BLACK);
+               modoCla();
               
         }
     }//GEN-LAST:event_jToggleButton1MouseClicked
@@ -302,9 +289,35 @@ public class inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        String usuario, clave;
+        usuario=jTextField1.getText();
+        clave=jPasswordField1.getText();
+        this.dispose();
+        new Comunicacion1(usuario, jToggleButton1.isSelected()).setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
+
     /**
-     * @param args the command line arguments
      */
+    public void modoOsc(){
+        (new Pintor (osc.getFondo1())).pintar(rootPanel);
+            (new PintorBT(osc.getBotones1(),osc.getBotones1c())).pintar(botonPanel);
+            jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
+            jToggleButton1.setBackground(osc.getFondo1());
+            jToggleButton1.setUI(new BasicButtonUI());
+            jLabel1.setForeground(Color.WHITE);
+            jLabel2.setForeground(Color.WHITE);
+    }
+    public void modoCla(){
+        (new Pintor(claro.getFondo1())).pintar(rootPanel);
+        (new PintorBT(claro.getBotones1(),claro.getBotones1c())).pintar(botonPanel);
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png")));
+        jToggleButton1.setBackground(Color.WHITE);
+        jToggleButton1.setUI(new BasicButtonUI());
+        jLabel1.setForeground(Color.BLACK);
+        jLabel2.setForeground(Color.BLACK);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -332,7 +345,7 @@ public class inicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new inicio().setVisible(true);
+                new inicio(false).setVisible(true);
             }
         });
     }
