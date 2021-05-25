@@ -11,6 +11,7 @@ import com.gt.modo_oscuro.Pintor;
 import com.gt.modo_oscuro.PintorBT;
 import com.gt.modo_oscuro.Tema1;
 import com.gt.modo_oscuro.Tema2;
+import com.gt.modo_oscuro.Tema3;
 import com.pe.iinsPre.Insertar;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -21,6 +22,7 @@ import javax.swing.JLabel;
 
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 
 import javax.swing.plaf.basic.BasicToggleButtonUI;
@@ -31,11 +33,13 @@ import javax.swing.plaf.basic.BasicToggleButtonUI;
  */
 public class Comunicacion1 extends javax.swing.JFrame {
     
+    int modonumber;
     JButton curso1 = new JButton("Matemática");
     JButton curso2 = new JButton("Biología");
     JButton curso3 = new JButton("Comunicación");
     Tema1 oscu= new Tema1();
     Tema2 cla=new Tema2();
+    Tema3 pinky=new Tema3();
     String user;
     
 
@@ -116,9 +120,9 @@ public class Comunicacion1 extends javax.swing.JFrame {
         buttonGroup3 = new javax.swing.ButtonGroup();
         arribaPanel = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         centralPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         preguntasJPanel = new javax.swing.JPanel();
@@ -172,15 +176,6 @@ public class Comunicacion1 extends javax.swing.JFrame {
         });
         arribaPanel.add(jToggleButton1, java.awt.BorderLayout.LINE_START);
 
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png"))); // NOI18N
-        jToggleButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        jToggleButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton2MouseClicked(evt);
-            }
-        });
-        arribaPanel.add(jToggleButton2, java.awt.BorderLayout.LINE_END);
-
         jPanel2.setPreferredSize(new java.awt.Dimension(120, 25));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -191,6 +186,14 @@ public class Comunicacion1 extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
         jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png"))); // NOI18N
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jButton4, java.awt.BorderLayout.LINE_END);
 
         arribaPanel.add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -422,7 +425,7 @@ public class Comunicacion1 extends javax.swing.JFrame {
             jPanel2.setLayout(new java.awt.GridLayout(1,3,10,10));
             this.setSize(this.getWidth()+1, this.getHeight());
             this.setSize(this.getWidth()-1, this.getHeight());
-            jToggleButton2.setEnabled(false);
+            jButton4.setEnabled(false);
             
         }else{
             jPanel2.removeAll();
@@ -430,42 +433,35 @@ public class Comunicacion1 extends javax.swing.JFrame {
             jPanel2.add(jLabel1);
             this.setSize(this.getWidth()+1, this.getHeight());
             this.setSize(this.getWidth()-1, this.getHeight());
-            jToggleButton2.setEnabled(true);
+            jButton4.setEnabled(true);
         }
 
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
-    private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
-        // TODO add your handling code here:
-        if (jToggleButton2.isSelected()) {
-            modoOscu();
-          
-        } else {
-            new Pintor(cla.getFondo1()).pintar(arribaPanel);
-            new Pintor(cla.getFondo1()).pintar(centralPanel);
-            new Pintor(cla.getFondo1()).pintar(abajoPanel);
-            new PintorBT(cla.getBotones1(),cla.getBotones1c()).pintar(abajoPanel);
-            jToggleButton1.setBackground(cla.getFondo1());
-            jToggleButton1.setUI(new BasicToggleButtonUI());
-            jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menuosc.png")));
-            jToggleButton2.setBackground(cla.getFondo1());
-            jToggleButton2.setUI(new BasicToggleButtonUI());
-            jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png")));
-            new Letrista(Color.BLACK).pintar(arribaPanel);
-            new Letrista(Color.BLACK).pintar(centralPanel);
-        }
-    }//GEN-LAST:event_jToggleButton2MouseClicked
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         
-        new inicio(jToggleButton2.isSelected()).setVisible(true);
+//        new inicio(jToggleButton2.isSelected()).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        modonumber++;
+        if (modonumber%3==1){
+           modoCla();
+        } else if (modonumber%3==2){
+           modoOscu();
+        } else if (modonumber%3==0){
+           modoPinky();
+        }
+            
+        
+    }//GEN-LAST:event_jButton4MouseClicked
+
     private void curso1MouseClicked(java.awt.event.MouseEvent evt) {
         
-        new Biologia1(user,jToggleButton2.isSelected()).setVisible(true);
+//        new Biologia1(user,jToggleButton2.isSelected()).setVisible(true);
         this.dispose();
     } 
     private void modoOscu(){
@@ -476,9 +472,9 @@ public class Comunicacion1 extends javax.swing.JFrame {
         jToggleButton1.setBackground(oscu.getFondo2());
         jToggleButton1.setUI(new BasicToggleButtonUI());
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menuscla.png")));
-        jToggleButton2.setBackground(oscu.getFondo2());
-        jToggleButton2.setUI(new BasicToggleButtonUI());
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
+        jButton4.setBackground(oscu.getFondo2());
+        jButton4.setUI(new BasicButtonUI());
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
         new Letrista(Color.WHITE).pintar(arribaPanel);
         new Letrista(Color.WHITE).pintar(centralPanel);
     }
@@ -489,8 +485,10 @@ public class Comunicacion1 extends javax.swing.JFrame {
         new PintorBT(cla.getBotones1(),cla.getBotones1c()).pintar(abajoPanel);
         jToggleButton1.setBackground(cla.getFondo1());
         jToggleButton1.setUI(new BasicToggleButtonUI());
-        jToggleButton2.setBackground(cla.getFondo1());
-        jToggleButton2.setUI(new BasicToggleButtonUI());
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menuosc.png")));
+        jButton4.setBackground(cla.getFondo1());
+        jButton4.setUI(new BasicButtonUI());
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png")));
         new Letrista(Color.BLACK).pintar(arribaPanel);
         new Letrista(Color.BLACK).pintar(centralPanel);
     }
@@ -528,7 +526,7 @@ public class Comunicacion1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Comunicacion1(null, true).setVisible(true);
+                new Comunicacion1(null, false).setVisible(true);
             }
         });
     }
@@ -554,6 +552,7 @@ public class Comunicacion1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
@@ -568,10 +567,24 @@ public class Comunicacion1 extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JPanel pregunta1panel;
     private javax.swing.JPanel pregunta1panel1;
     private javax.swing.JPanel pregunta1panel2;
     private javax.swing.JPanel preguntasJPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void modoPinky() {
+        new Pintor(pinky.getFondo1()).pintar(arribaPanel);
+        new Pintor(pinky.getFondo2()).pintar(centralPanel);
+        new Pintor(pinky.getFondo2()).pintar(abajoPanel);
+        new PintorBT(pinky.getBotones1(),pinky.getBotones1c()).pintar(abajoPanel);
+        jToggleButton1.setBackground(pinky.getFondo1());
+        jToggleButton1.setUI(new BasicToggleButtonUI());
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menuscla.png")));
+        jButton4.setBackground(pinky.getFondo1());
+        jButton4.setUI(new BasicButtonUI());
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/custom.png")));
+        new Letrista(Color.WHITE).pintar(arribaPanel);
+        new Letrista(Color.WHITE).pintar(centralPanel);
+    }
 }
