@@ -458,13 +458,15 @@ public class Comunicacion1 extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        this.dispose();
+        
         new inicio(jToggleButton2.isSelected()).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void curso1MouseClicked(java.awt.event.MouseEvent evt) {
-        this.dispose();
+        
         new Biologia1(user,jToggleButton2.isSelected()).setVisible(true);
+        this.dispose();
     } 
     private void modoOscu(){
         new Pintor(oscu.getFondo2()).pintar(arribaPanel);

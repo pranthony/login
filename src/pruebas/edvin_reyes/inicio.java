@@ -302,12 +302,12 @@ public class inicio extends javax.swing.JFrame {
      */
     public void modoOsc(){
         (new Pintor (osc.getFondo1())).pintar(rootPanel);
-            (new PintorBT(osc.getBotones1(),osc.getBotones1c())).pintar(botonPanel);
-            jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
-            jToggleButton1.setBackground(osc.getFondo1());
-            jToggleButton1.setUI(new BasicButtonUI());
-            jLabel1.setForeground(Color.WHITE);
-            jLabel2.setForeground(Color.WHITE);
+        (new PintorBT(osc.getBotones1(),osc.getBotones1c())).pintar(botonPanel);
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
+        jToggleButton1.setBackground(osc.getFondo1());
+        jToggleButton1.setUI(new BasicButtonUI());
+        jLabel1.setForeground(Color.WHITE);
+        jLabel2.setForeground(Color.WHITE);
     }
     public void modoCla(){
         (new Pintor(claro.getFondo1())).pintar(rootPanel);
