@@ -33,7 +33,7 @@ import javax.swing.plaf.basic.BasicToggleButtonUI;
  */
 public class Comunicacion1 extends javax.swing.JFrame {
     
-    int modonumber;
+    int modonumber=1;
     JButton curso1 = new JButton("Matemática");
     JButton curso2 = new JButton("Biología");
     JButton curso3 = new JButton("Comunicación");
@@ -45,16 +45,24 @@ public class Comunicacion1 extends javax.swing.JFrame {
 
     
     
-    public Comunicacion1(String user, boolean modo) {
+    public Comunicacion1(String user, int modo) {
         initComponents();
-        
+        modonumber=modo;
         this.user=user;
         jLabel2.setText("Bienvenido "+user+" ,responde:");
         this.setLocationRelativeTo(null);
-        if (modo){
-            modoOscu();
-        }else{
-           modoCla();
+        switch (modo%3) {
+            case 1:
+                modoCla();
+                break;
+            case 2:
+                modoOscu();
+                break;
+            case 0:
+                modoPinky();
+                break;
+            default:
+                break;
         }
         
         JButton [] btns={curso1, curso2, curso3}; 
@@ -120,9 +128,9 @@ public class Comunicacion1 extends javax.swing.JFrame {
         buttonGroup3 = new javax.swing.ButtonGroup();
         arribaPanel = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         centralPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         preguntasJPanel = new javax.swing.JPanel();
@@ -176,6 +184,14 @@ public class Comunicacion1 extends javax.swing.JFrame {
         });
         arribaPanel.add(jToggleButton1, java.awt.BorderLayout.LINE_START);
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png"))); // NOI18N
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+        arribaPanel.add(jButton4, java.awt.BorderLayout.LINE_END);
+
         jPanel2.setPreferredSize(new java.awt.Dimension(120, 25));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -186,14 +202,6 @@ public class Comunicacion1 extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
         jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png"))); // NOI18N
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jButton4, java.awt.BorderLayout.LINE_END);
 
         arribaPanel.add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -441,19 +449,25 @@ public class Comunicacion1 extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         
-//        new inicio(jToggleButton2.isSelected()).setVisible(true);
+        new inicio(modonumber).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         modonumber++;
-        if (modonumber%3==1){
-           modoCla();
-        } else if (modonumber%3==2){
-           modoOscu();
-        } else if (modonumber%3==0){
-           modoPinky();
+        switch (modonumber%3) {
+            case 1:
+                modoCla();
+                break;
+            case 2:
+                modoOscu();
+                break;
+            case 0:
+                modoPinky();
+                break;
+            default:
+                break;
         }
             
         
@@ -461,7 +475,7 @@ public class Comunicacion1 extends javax.swing.JFrame {
 
     private void curso1MouseClicked(java.awt.event.MouseEvent evt) {
         
-//        new Biologia1(user,jToggleButton2.isSelected()).setVisible(true);
+        new Biologia1(user,modonumber).setVisible(true);
         this.dispose();
     } 
     private void modoOscu(){
@@ -526,7 +540,7 @@ public class Comunicacion1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Comunicacion1(null, false).setVisible(true);
+                new Comunicacion1(null, 1).setVisible(true);
             }
         });
     }

@@ -9,6 +9,7 @@ import com.gt.modo_oscuro.Pintor;
 import com.gt.modo_oscuro.PintorBT;
 import com.gt.modo_oscuro.Tema1;
 import com.gt.modo_oscuro.Tema2;
+import com.gt.modo_oscuro.Tema3;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JButton;
@@ -28,14 +29,25 @@ public class inicio extends javax.swing.JFrame {
      */
     Tema2 claro =new Tema2();
     Tema1 osc =new Tema1();
-    public inicio(boolean modo) {
+    Tema3 pinky=new Tema3();
+    int modonumber=1;
+    public inicio(int modo) {
         initComponents();
+        modonumber=modo;
        this.setLocationRelativeTo(null);
-       if(modo){
-           modoOsc();
-       }else{
-           modoCla();
-       }
+       switch (modo%3) {
+            case 1:
+                modoCla();
+                break;
+            case 2:
+                modoOsc();
+                break;
+            case 0:
+                modoPinky();
+                break;
+            default:
+                break;
+        }
         
     }
 
@@ -60,7 +72,7 @@ public class inicio extends javax.swing.JFrame {
 
         rootPanel = new javax.swing.JPanel();
         upPanel = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jButton1 = new javax.swing.JButton();
         loginPanel = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         userPanel = new javax.swing.JPanel();
@@ -90,14 +102,13 @@ public class inicio extends javax.swing.JFrame {
         upPanel.setPreferredSize(new java.awt.Dimension(0, 100));
         upPanel.setLayout(new java.awt.BorderLayout());
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png"))); // NOI18N
-        jToggleButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png"))); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
+                jButton1MouseClicked(evt);
             }
         });
-        upPanel.add(jToggleButton1, java.awt.BorderLayout.WEST);
+        upPanel.add(jButton1, java.awt.BorderLayout.LINE_START);
 
         rootPanel.add(upPanel, java.awt.BorderLayout.PAGE_START);
 
@@ -272,19 +283,6 @@ public class inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-       
-        if (jToggleButton1.isSelected()) {
-        //hemos cambiado la función por un servicio 
-//            oscuro(rootPanel,Color.CYAN);
-              modoOsc();
-              
-        }else {
-               modoCla();
-              
-        }
-    }//GEN-LAST:event_jToggleButton1MouseClicked
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -295,28 +293,55 @@ public class inicio extends javax.swing.JFrame {
         usuario=jTextField1.getText();
         clave=jPasswordField1.getText();
         this.dispose();
-        new Comunicacion1(usuario, jToggleButton1.isSelected()).setVisible(true);
+        new Comunicacion1(usuario, modonumber).setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        modonumber++;
+        switch (modonumber%3) {
+            case 1:
+                modoCla();
+                break;
+            case 2:
+                modoOsc();
+                break;
+            case 0:
+                modoPinky();
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      */
     public void modoOsc(){
         (new Pintor (osc.getFondo1())).pintar(rootPanel);
         (new PintorBT(osc.getBotones1(),osc.getBotones1c())).pintar(botonPanel);
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
-        jToggleButton1.setBackground(osc.getFondo1());
-        jToggleButton1.setUI(new BasicButtonUI());
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dia.png")));
+        jButton1.setBackground(osc.getFondo1());
+        jButton1.setUI(new BasicButtonUI());
         jLabel1.setForeground(Color.WHITE);
         jLabel2.setForeground(Color.WHITE);
     }
     public void modoCla(){
         (new Pintor(claro.getFondo1())).pintar(rootPanel);
         (new PintorBT(claro.getBotones1(),claro.getBotones1c())).pintar(botonPanel);
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png")));
-        jToggleButton1.setBackground(Color.WHITE);
-        jToggleButton1.setUI(new BasicButtonUI());
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noche.png")));
+        jButton1.setBackground(claro.getFondo1());
+        jButton1.setUI(new BasicButtonUI());
         jLabel1.setForeground(Color.BLACK);
         jLabel2.setForeground(Color.BLACK);
+    }
+    public void modoPinky(){
+        (new Pintor(pinky.getFondo1())).pintar(rootPanel);
+        (new PintorBT(pinky.getBotones1(),pinky.getBotones1c())).pintar(botonPanel);
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/custom.png")));
+        jButton1.setBackground(pinky.getFondo1());
+        jButton1.setUI(new BasicButtonUI());
+        jLabel1.setForeground(Color.WHITE);
+        jLabel2.setForeground(Color.WHITE);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -345,13 +370,14 @@ public class inicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new inicio(false).setVisible(true);
+                new inicio(1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botonPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -367,7 +393,6 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPanel passPanel;
     private javax.swing.JPanel rootPanel;
